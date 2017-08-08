@@ -1,5 +1,6 @@
 package com.nohimys.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,27 +10,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nohimys.entity.Configuration;
 import com.nohimys.entity.derivedResponses.GpsLocationWithUsername;
+import com.nohimys.service.ConfigurationService;
+import com.nohimys.service.LocationService;
 
 @RestController
 @RequestMapping("/trackee")
 public class TrackeeController {
 	
+	@Autowired
+	private ConfigurationService configurationService;
+	
+	@Autowired
+	private LocationService locationService;
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/seek_configuration")
 	public Configuration seekConfiguration(@RequestParam("username") String username) {
-		Configuration configuration = new Configuration();
-		if (username.equals("nohim")) {
-			configuration.setUploadingDurationInMinutes(60);
-			configuration.setTimerTickDurationInMinutes(15);
-		}
-		return configuration;
+		return configurationService.seekConfiguration(username);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT,value = "/update_location", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateLocation(@RequestBody GpsLocationWithUsername gpsLocationWithUsername) {
-		System.out.println(gpsLocationWithUsername.getUsername());
-		System.out.println(gpsLocationWithUsername.getGpsLocation().getLatitude());
-		System.out.println(gpsLocationWithUsername.getGpsLocation().getLongitude());
-		return true;
+		return locationService.updateLocation(gpsLocationWithUsername);
 	}
 
 }
