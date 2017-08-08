@@ -2,8 +2,8 @@ package com.nohimys.service;
 
 import org.springframework.stereotype.Service;
 
-import com.nohimys.entity.Configuration;
-import com.nohimys.entity.derivedResponses.ConfigurationWithUsername;
+import com.nohimys.model.Configuration;
+import com.nohimys.model.derivedResponses.ConfigurationWithUsername;
 
 @Service
 public class ConfigurationService {

@@ -1,6 +1,6 @@
-package com.nohimys.entity.derivedResponses;
+package com.nohimys.model.derivedResponses;
 
-import com.nohimys.entity.Configuration;
+import com.nohimys.model.Configuration;
 
 public class ConfigurationWithUsername {
 	private String username;

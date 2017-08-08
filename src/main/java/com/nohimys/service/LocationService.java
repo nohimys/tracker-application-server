@@ -2,9 +2,9 @@ package com.nohimys.service;
 
 import org.springframework.stereotype.Service;
 
-import com.nohimys.entity.GpsLocation;
-import com.nohimys.entity.derivedResponses.GpsLocationWithUsername;
-import com.nohimys.entity.derivedResponses.LocationResponse;
+import com.nohimys.model.GpsLocation;
+import com.nohimys.model.derivedResponses.GpsLocationWithUsername;
+import com.nohimys.model.derivedResponses.LocationResponse;
 
 @Service
 public class LocationService {

@@ -1,6 +1,6 @@
-package com.nohimys.entity.derivedResponses;
+package com.nohimys.model.derivedResponses;
 
-import com.nohimys.entity.GpsLocation;
+import com.nohimys.model.GpsLocation;
 
 public class GpsLocationWithUsername {
 	private String username;

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nohimys.entity.Configuration;
-import com.nohimys.entity.derivedResponses.GpsLocationWithUsername;
+import com.nohimys.model.Configuration;
+import com.nohimys.model.derivedResponses.GpsLocationWithUsername;
 import com.nohimys.service.ConfigurationService;
 import com.nohimys.service.LocationService;
 

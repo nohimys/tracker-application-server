@@ -1,4 +1,4 @@
-package com.nohimys.entity;
+package com.nohimys.model;
 
 public class TrackeeUser {
 	private String userName;
