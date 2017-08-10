@@ -23,10 +23,6 @@ public class LocationService {
 	private TrackeeInformationRepository trackeeInformationRepository;
 
 	public boolean updateLocation(GpsLocationWithUsernameAndTime gpsLocationWithUsername) throws ParseException {
-
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = dateFormat.parse(gpsLocationWithUsername.getReportedDateTime());
-		System.out.println(date.toString());
 		
 		TrackeeInformation trackeeInformation = trackeeInformationRepository
 				.findOne(gpsLocationWithUsername.getUsername());
@@ -34,6 +30,10 @@ public class LocationService {
 		if (trackeeInformation != null) {
 			BigDecimal latitude = gpsLocationWithUsername.getGpsLocation().getLatitude();
 			BigDecimal longitude = gpsLocationWithUsername.getGpsLocation().getLongitude();
+			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = dateFormat.parse(gpsLocationWithUsername.getReportedDateTime());
+			//System.out.println(date.toString());
 			Timestamp  reportedTime = new Timestamp(date.getTime());
 
 			if (latitude != null && !latitude.equals(0.0)) {
@@ -48,8 +48,10 @@ public class LocationService {
 				trackeeInformation.setReportedTime(reportedTime);
 			}
 			
+			boolean isConfigurationsUpdated = trackeeInformation.isConfigurationUpdated();
+			
 			trackeeInformationRepository.save(trackeeInformation);
-			return true;
+			return isConfigurationsUpdated;
 		}
 		return false;
 	}
