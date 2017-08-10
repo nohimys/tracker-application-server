@@ -2,11 +2,14 @@ package com.nohimys.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "trackee_information")
@@ -15,28 +18,29 @@ public class TrackeeInformation {
 	@Id
 	@Column(name = "username")
 	private String username;
-	
+
 	@Column(name = "device_id")
 	private String deviceId;
-	
+
 	@Column(name = "friendly_name")
 	private String friendlyName;
-	
+
 	@Column(name = "last_latitude")
 	private BigDecimal lastLatitude;
-	
+
 	@Column(name = "last_longitude")
 	private BigDecimal lastLongitude;
-	
-	@Column(name = "reported_time")
-	private Date reportedTime;
-	
+
+	//@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "reported_time")	
+	private Timestamp  reportedTime;
+
 	@Column(name = "uploading_duration_in_mins")
 	private int uploadingDurationInMins;
-	
+
 	@Column(name = "timer_tick_duration_in_mins")
 	private int timerTickDurationInMins;
-	
+
 	@Column(name = "is_configuration_updated")
 	private boolean isConfigurationUpdated;
 
@@ -80,11 +84,12 @@ public class TrackeeInformation {
 		this.lastLongitude = lastLongitude;
 	}
 
-	public Date getReportedTime() {
+	//@Temporal(TemporalType.TIMESTAMP)
+	public Timestamp getReportedTime() {
 		return reportedTime;
 	}
 
-	public void setReportedTime(Date reportedTime) {
+	public void setReportedTime(Timestamp reportedTime) {
 		this.reportedTime = reportedTime;
 	}
 
@@ -111,6 +116,5 @@ public class TrackeeInformation {
 	public void setConfigurationUpdated(boolean isConfigurationUpdated) {
 		this.isConfigurationUpdated = isConfigurationUpdated;
 	}
-	
-	
+
 }

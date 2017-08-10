@@ -1,27 +1,29 @@
 package com.nohimys.model;
 
+import java.math.BigDecimal;
+
 public class GpsLocation {
-	private String latitude;
-	private String longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	
 	public GpsLocation() {		
 	}
 	
-	public GpsLocation(String latitude, String longitude) {
+	public GpsLocation(BigDecimal latitude, BigDecimal longitude) {
 		super();
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	public String getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
-	public String getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 }

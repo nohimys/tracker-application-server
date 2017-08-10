@@ -1,13 +1,15 @@
 package com.nohimys.model.derivedResponses;
 
+
 import com.nohimys.model.GpsLocation;
 
 public class LocationResponse {
 
 	private GpsLocation gpsLocation;
 	private String friendlyName;
-	private String reportedTime;
+	private String  reportedTime;
 	private boolean isConfigurationUpdated;
+	
 	public GpsLocation getGpsLocation() {
 		return gpsLocation;
 	}
@@ -19,7 +21,7 @@ public class LocationResponse {
 	}
 	public void setFriendlyName(String friendlyName) {
 		this.friendlyName = friendlyName;
-	}
+	}	
 	public String getReportedTime() {
 		return reportedTime;
 	}

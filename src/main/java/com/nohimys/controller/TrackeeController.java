@@ -1,5 +1,7 @@
 package com.nohimys.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nohimys.model.Configuration;
-import com.nohimys.model.derivedResponses.GpsLocationWithUsername;
+import com.nohimys.model.derivedResponses.GpsLocationWithUsernameAndTime;
 import com.nohimys.service.ConfigurationService;
 import com.nohimys.service.LocationService;
 
@@ -29,7 +31,7 @@ public class TrackeeController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT,value = "/update_location", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public boolean updateLocation(@RequestBody GpsLocationWithUsername gpsLocationWithUsername) {
+	public boolean updateLocation(@RequestBody GpsLocationWithUsernameAndTime gpsLocationWithUsername) throws ParseException {
 		return locationService.updateLocation(gpsLocationWithUsername);
 	}
 
