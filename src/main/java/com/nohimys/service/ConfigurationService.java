@@ -14,7 +14,7 @@ public class ConfigurationService {
 	@Autowired
 	private TrackeeInformationRepository trackeeInformationRepository;
 
-	public Configuration seekConfiguration(String username) {
+	public Configuration seekConfiguration(String username,boolean isSeekedByTrackee) {
 		
 		Configuration configuration = new Configuration();
 		
@@ -23,7 +23,12 @@ public class ConfigurationService {
 		if(trackeeInformation != null)
 		{
 			configuration.setUploadingDurationInMinutes(trackeeInformation.getUploadingDurationInMins());
-			configuration.setTimerTickDurationInMinutes(trackeeInformation.getTimerTickDurationInMins());			
+			configuration.setTimerTickDurationInMinutes(trackeeInformation.getTimerTickDurationInMins());
+			
+			//Make it false after the configuration is been seek
+			if(isSeekedByTrackee) {
+				trackeeInformation.setConfigurationUpdated(false);
+			}			
 		}		
 		return configuration;
 	}

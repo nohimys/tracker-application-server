@@ -27,7 +27,7 @@ public class TrackeeController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/seek_configuration")
 	public Configuration seekConfiguration(@RequestParam("username") String username) {
-		return configurationService.seekConfiguration(username);
+		return configurationService.seekConfiguration(username,true);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT,value = "/update_location", consumes=MediaType.APPLICATION_JSON_VALUE)

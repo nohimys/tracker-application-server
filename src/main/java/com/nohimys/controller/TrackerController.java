@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nohimys.model.Configuration;
 import com.nohimys.model.TrackeeUser;
 import com.nohimys.model.derivedResponses.ConfigurationWithUsername;
 import com.nohimys.model.derivedResponses.LocationResponse;
@@ -31,6 +32,11 @@ public class TrackerController {
 	@RequestMapping("/get_current_location")
 	public LocationResponse getCurrentLocation(@RequestParam("username") String username) {
 		return locationService.getCurrentLocation(username);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/get_configuration")
+	public Configuration getConfiguration(@RequestParam("username") String username) {
+		return configurationService.seekConfiguration(username,false);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT,value = "/update_configuration", consumes=MediaType.APPLICATION_JSON_VALUE)
