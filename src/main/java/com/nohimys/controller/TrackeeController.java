@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nohimys.model.Configuration;
+import com.nohimys.model.NewTrackeeUser;
 import com.nohimys.model.derivedResponses.GpsLocationWithUsernameAndTime;
 import com.nohimys.service.ConfigurationService;
 import com.nohimys.service.LocationService;
+import com.nohimys.service.UserManagementService;
 
 @RestController
 @RequestMapping("/trackee")
@@ -25,6 +27,9 @@ public class TrackeeController {
 	@Autowired
 	private LocationService locationService;
 	
+	@Autowired
+	private UserManagementService userManagementService;
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/seek_configuration")
 	public Configuration seekConfiguration(@RequestParam("username") String username) {
 		return configurationService.seekConfiguration(username,true);
@@ -33,6 +38,16 @@ public class TrackeeController {
 	@RequestMapping(method = RequestMethod.PUT,value = "/update_location", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateLocation(@RequestBody GpsLocationWithUsernameAndTime gpsLocationWithUsername) throws ParseException {
 		return locationService.updateLocation(gpsLocationWithUsername);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/is_trackee_username_available")
+	public boolean isTrackeeUsernameAvailable(@RequestParam("username") String username) {
+		return userManagementService.isTrackeeUsernameAvailable(username);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST,value = "/add_new_trackee", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public boolean addNewTrackee(@RequestBody NewTrackeeUser newTrackeeUser) {
+		return userManagementService.addNewTrackee(newTrackeeUser.getUserName(), newTrackeeUser.getDeviceId());
 	}
 
 }

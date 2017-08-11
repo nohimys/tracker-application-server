@@ -20,6 +20,32 @@ public class UserManagementService {
 
 	@Autowired
 	private TrackerInformationRepository trackerInformationRepository;
+	
+	public boolean isTrackeeUsernameAvailable(String username) {
+		
+		TrackeeInformation trackeeInformation = trackeeInformationRepository.findOne(username);
+		
+		if(trackeeInformation == null) {
+			return true;
+		}
+		return false;			
+	}
+	
+	public boolean addNewTrackee(String username,String deviceId) {
+		if(this.isTrackeeUsernameAvailable(username)) {
+			
+			TrackeeInformation trackeeInformation = new TrackeeInformation();
+			trackeeInformation.setUsername(username);
+			trackeeInformation.setDeviceId(deviceId);
+			trackeeInformation.setTimerTickDurationInMins(30);
+			trackeeInformation.setUploadingDurationInMins(180);
+			
+			trackeeInformationRepository.save(trackeeInformation);
+			return true;
+		}
+		return false;
+	}
+
 
 	public boolean validateLogin(String username, String password) {
 
