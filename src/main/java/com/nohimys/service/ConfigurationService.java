@@ -28,6 +28,8 @@ public class ConfigurationService {
 			//Make it false after the configuration is been seek
 			if(isSeekedByTrackee) {
 				trackeeInformation.setConfigurationUpdated(false);
+				//Save the object to the table, if it is updated
+				trackeeInformationRepository.save(trackeeInformation);
 			}			
 		}		
 		return configuration;

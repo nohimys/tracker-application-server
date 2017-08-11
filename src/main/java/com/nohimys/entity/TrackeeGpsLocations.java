@@ -2,6 +2,7 @@ package com.nohimys.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class TrackeeGpsLocations {
 	
 	@Id
 	@Column(name = "reported_time")
-	private Date reportedTime;
+	private Timestamp reportedTime;
 	
 	@Column(name = "last_latitude")
 	private BigDecimal lastLatitude;
@@ -34,11 +35,11 @@ public class TrackeeGpsLocations {
 		this.username = username;
 	}
 
-	public Date getReportedTime() {
+	public Timestamp getReportedTime() {
 		return reportedTime;
 	}
 
-	public void setReportedTime(Date reportedTime) {
+	public void setReportedTime(Timestamp reportedTime) {
 		this.reportedTime = reportedTime;
 	}
 

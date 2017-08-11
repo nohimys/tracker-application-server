@@ -1,6 +1,6 @@
 create database tracker_application;
 show databases;
-use tracker_application;
+use tracker_application;	
 
 create table tracker_information(
 	username VARCHAR(30) primary key,
@@ -27,7 +27,7 @@ create table trackee_gps_locations(
 	last_longitude DECIMAL(10, 8),
     
     constraint trackee_gps_locations_primary_key primary key(username,reported_time),
-    constraint trackee_gps_locations_foreign_key1 foreign key(username) references  trackee_information(username)
+    constraint trackee_gps_locations_foreign_key1 foreign key(username) references  trackee_information(username) on delete cascade
 );
 
 insert into tracker_information values('nohimys','sliit123','0000');
@@ -35,6 +35,7 @@ insert into trackee_information values('samantha31','1111','Samantha',80.2222,70
 
 select * from tracker_information;
 select * from trackee_information;
+select * from trackee_gps_locations;
 
 drop table tracker_information;
 drop table trackee_information;

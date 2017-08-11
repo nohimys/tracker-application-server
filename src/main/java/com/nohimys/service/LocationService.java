@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nohimys.dao.TrackeeGpsLocationsRepository;
 import com.nohimys.dao.TrackeeInformationRepository;
+import com.nohimys.entity.TrackeeGpsLocations;
 import com.nohimys.entity.TrackeeInformation;
 import com.nohimys.model.GpsLocation;
 import com.nohimys.model.derivedResponses.GpsLocationWithUsernameAndTime;
@@ -21,6 +23,9 @@ public class LocationService {
 
 	@Autowired
 	private TrackeeInformationRepository trackeeInformationRepository;
+	
+	@Autowired
+	private TrackeeGpsLocationsRepository trackeeGpsLocationsRepository;
 
 	public boolean updateLocation(GpsLocationWithUsernameAndTime gpsLocationWithUsername) throws ParseException {
 		
@@ -36,19 +41,29 @@ public class LocationService {
 			//System.out.println(date.toString());
 			Timestamp  reportedTime = new Timestamp(date.getTime());
 
+			//Also add to the Trackee GPS Locations Table
+			TrackeeGpsLocations trackeeGpsLocations = new TrackeeGpsLocations();
+			trackeeGpsLocations.setUsername(gpsLocationWithUsername.getUsername());
+			
 			if (latitude != null && !latitude.equals(0.0)) {
 				trackeeInformation.setLastLatitude(latitude);
+				trackeeGpsLocations.setLastLatitude(latitude);
 			}
 
 			if (longitude != null && !latitude.equals(0.0)) {
 				trackeeInformation.setLastLongitude(longitude);
+				trackeeGpsLocations.setLastLongitude(longitude);
 			}
 			
 			if(reportedTime != null) {
 				trackeeInformation.setReportedTime(reportedTime);
+				trackeeGpsLocations.setReportedTime(reportedTime);
 			}
 			
 			boolean isConfigurationsUpdated = trackeeInformation.isConfigurationUpdated();
+			
+			//Also save to the Trackee GPS Locations Table
+			trackeeGpsLocationsRepository.save(trackeeGpsLocations);
 			
 			trackeeInformationRepository.save(trackeeInformation);
 			return isConfigurationsUpdated;
