@@ -1,7 +1,5 @@
 package com.nohimys.model.derivedResponses;
 
-import java.util.Date;
-
 import com.nohimys.model.GpsLocation;
 
 public class GpsLocationWithUsernameAndTime {

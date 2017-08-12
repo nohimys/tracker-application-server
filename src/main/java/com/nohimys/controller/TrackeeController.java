@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nohimys.model.Configuration;
 import com.nohimys.model.NewTrackeeUser;
 import com.nohimys.model.derivedResponses.GpsLocationWithUsernameAndTime;
-import com.nohimys.service.ConfigurationService;
-import com.nohimys.service.LocationService;
-import com.nohimys.service.UserManagementService;
+import com.nohimys.service.IConfigurationService;
+import com.nohimys.service.LocationServiceImpl;
+import com.nohimys.service.UserManagementServiceImpl;
 
 @RestController
 @RequestMapping("/trackee")
 public class TrackeeController {
 	
 	@Autowired
-	private ConfigurationService configurationService;
+	private IConfigurationService configurationService;
 	
 	@Autowired
-	private LocationService locationService;
+	private LocationServiceImpl locationService;
 	
 	@Autowired
-	private UserManagementService userManagementService;
+	private UserManagementServiceImpl userManagementService;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/seek_configuration")
 	public Configuration seekConfiguration(@RequestParam("username") String username) {

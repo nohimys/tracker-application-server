@@ -14,20 +14,20 @@ import com.nohimys.model.Configuration;
 import com.nohimys.model.TrackeeUser;
 import com.nohimys.model.derivedResponses.ConfigurationWithUsername;
 import com.nohimys.model.derivedResponses.LocationResponse;
-import com.nohimys.service.ConfigurationService;
-import com.nohimys.service.LocationService;
-import com.nohimys.service.UserManagementService;
+import com.nohimys.service.ConfigurationServiceImpl;
+import com.nohimys.service.LocationServiceImpl;
+import com.nohimys.service.UserManagementServiceImpl;
 
 @RestController
 @RequestMapping("/tracker")
 public class TrackerController {
 	
 	@Autowired
-	private ConfigurationService configurationService;	
+	private ConfigurationServiceImpl configurationService;	
 	@Autowired
-	private UserManagementService userManagementService;
+	private UserManagementServiceImpl userManagementService;
 	@Autowired
-	private LocationService locationService;
+	private LocationServiceImpl locationService;
 
 	@RequestMapping("/get_current_location")
 	public LocationResponse getCurrentLocation(@RequestParam("username") String username) {

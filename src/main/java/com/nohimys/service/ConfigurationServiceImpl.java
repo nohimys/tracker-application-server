@@ -9,7 +9,7 @@ import com.nohimys.model.Configuration;
 import com.nohimys.model.derivedResponses.ConfigurationWithUsername;
 
 @Service
-public class ConfigurationService {
+public class ConfigurationServiceImpl implements IConfigurationService{
 	
 	@Autowired
 	private TrackeeInformationRepository trackeeInformationRepository;

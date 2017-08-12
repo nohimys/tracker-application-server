@@ -13,7 +13,7 @@ import com.nohimys.entity.TrackerInformation;
 import com.nohimys.model.TrackeeUser;
 
 @Service
-public class UserManagementService {
+public class UserManagementServiceImpl implements IUserManagementService{
 
 	@Autowired
 	private TrackeeInformationRepository trackeeInformationRepository;
