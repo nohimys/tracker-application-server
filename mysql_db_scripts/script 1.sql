@@ -30,7 +30,9 @@ create table trackee_gps_locations(
     constraint trackee_gps_locations_foreign_key1 foreign key(username) references  trackee_information(username) on delete cascade
 );
 
-insert into tracker_information values('nohimys','sliit123','0000');
+show tables;
+
+insert into tracker_information values('nohimys','sliit123','000000');
 insert into trackee_information values('samantha31','1111','Samantha',80.2222,70.5555,'2017-08-07 22:53:35',30,15,false);
 
 select * from tracker_information;
@@ -40,5 +42,3 @@ select * from trackee_gps_locations;
 drop table tracker_information;
 drop table trackee_information;
 drop table trackee_gps_locations;
-
-show tables;
